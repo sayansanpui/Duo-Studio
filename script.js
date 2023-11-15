@@ -23,7 +23,6 @@ function init() {
     ScrollTrigger.refresh();
 
 }
-
 init()
 
 var crsr = document.querySelector(".cursor")
@@ -31,7 +30,29 @@ var main = document.querySelector(".main")
 document.addEventListener("mousemove",function(dets){
     crsr.style.left = dets.x + 20+"px"
     crsr.style.top = dets.y + 20+"px"
+    overlay.style.left = dets.x + 20+"px"
+    overlay.style.top = dets.y + 20+"px"
 })
+
+const videos = document.querySelectorAll(".main-video");
+const text = document.querySelector(".sound-text");
+videos.forEach(function (elem){
+    elem.addEventListener("mouseenter", function () {
+        crsr.style.width = "auto"
+        crsr.style.height = "auto"
+        crsr.style.borderRadius = "50px"
+        crsr.style.padding = "4px 7px"
+        text.style.display = "block";
+    });
+
+    elem.addEventListener("mouseleave", function () {
+        crsr.style.width = "20px"
+        crsr.style.height = "20px"
+        crsr.style.borderRadius = "50%"
+        crsr.style.padding = "auto"
+        text.style.display = "none";
+    });
+});
 
 gsap.from(".page1 h1,.page1 h2", {
     y: 10,
@@ -97,6 +118,7 @@ boxes.forEach(function(elem){
         crsr.style.width = "470px"
         crsr.style.height = "370px"
         crsr.style.borderRadius = "0"
+        // crsr.style.zIndex  = "99"
         crsr.style.backgroundImage = `url(${att})`
     })
     elem.addEventListener("mouseleave",function(){
@@ -104,6 +126,7 @@ boxes.forEach(function(elem){
         crsr.style.width = "20px"
         crsr.style.height = "20px"
         crsr.style.borderRadius = "50%"
+        // crsr.style.zIndex  = "8"
         crsr.style.backgroundImage = `none`
     })
 })
